@@ -1,78 +1,299 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
-  <meta charset="UTF-8">
-  <title>gt-kao - 個人資料</title>
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0; padding: 0;
-      background-color: #f9f9f9;
-      color: #333;
-    }
-    header {
-      background-color: #004080;
-      color: white;
-      padding: 1rem;
-      text-align: center;
-    }
-    main {
-      padding: 2rem;
-      max-width: 800px;
-      margin: auto;
-    }
-    h2 {
-      color: #004080;
-    }
-    footer {
-      background-color: #333;
-      color: white;
-      text-align: center;
-      padding: 1rem;
-      margin-top: 2rem;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高爾軒 老師 | Linux 專業講師個人網頁</title>
+    <style>
+        /* 視覺色彩設定：融入大頭照的綠色外套與鳥居紅 */
+        :root {
+            --primary-color: #556B2F;    /* 抹茶秋葉綠，呼應照片外套 */
+            --secondary-color: #D9534F;  /* 鳥居赤紅，做為重點強調 */
+            --bg-color: #FDFBF7;         /* 溫暖的大地米白底色 */
+            --card-bg: #ffffff;
+            --text-main: #2C3E50;
+            --text-sub: #7F8C8D;
+        }
 
-    
-    @media (max-width: 600px) {
-      main {
-        padding: 1rem;
-      }
-      h1 {
-        font-size: 1.5rem;
-      }
-      h2 {
-        font-size: 1.2rem;
-      }
-      body {
-        font-size: 14px;
-      }
-    }
-  </style>
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* 導覽列 */
+        nav {
+            background-color: rgba(253, 251, 247, 0.9);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 20px 0;
+            border-bottom: 1px solid #f1eeeb;
+            backdrop-filter: blur(5px);
+        }
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav .logo {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 25px;
+        }
+        nav a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        /* 首頁視覺區塊 */
+        .hero {
+            padding: 90px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap-reverse;
+            gap: 40px;
+        }
+
+        .hero-text {
+            flex: 1.2;
+            min-width: 320px;
+        }
+
+        .hero-text h1 {
+            font-size: 2.8rem;
+            color: var(--primary-color);
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+
+        .hero-text h2 {
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: var(--text-sub);
+            margin: 0 0 25px 0;
+            letter-spacing: 1px;
+            line-height: 1.4;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: #4A5568;
+            margin-bottom: 30px;
+        }
+
+        .hero-img {
+            flex: 0.8;
+            min-width: 280px;
+            text-align: center;
+        }
+
+        .hero-img img {
+            max-width: 100%;
+            width: 280px;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 50%; /* 圓形剪裁 */
+            box-shadow: 0 15px 35px rgba(85, 107, 47, 0.15);
+            border: 6px solid #fff;
+        }
+
+        /* 通用區塊設定 */
+        .section {
+            padding: 80px 0;
+            border-top: 1px solid #f1eeeb;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            margin: 12px auto 0;
+            border-radius: 2px;
+        }
+
+        /* 經歷與特點卡片排版 */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 35px 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+            transition: all 0.3s ease;
+            border: 1px solid #f8f6f2;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(85, 107, 47, 0.08);
+        }
+
+        .card h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* 條列式樣式調整 */
+        .card ul {
+            padding-left: 20px;
+            margin: 0;
+        }
+        
+        .card li {
+            margin-bottom: 8px;
+        }
+
+        /* 聯絡區塊特別設計 */
+        .contact-box {
+            background-color: #f5f2eb;
+            border-radius: 20px;
+            padding: 50px 40px;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .email-link {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 2px dashed var(--primary-color);
+            padding-bottom: 2px;
+            transition: opacity 0.3s;
+        }
+        .email-link:hover {
+            opacity: 0.8;
+        }
+
+        /* 頁尾 */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            background-color: #2C3E50;
+            color: #A0AEC0;
+            font-size: 0.95rem;
+        }
+
+        /* 行動裝置響應式優化 */
+        @media (max-width: 768px) {
+            .hero { padding: 50px 0; justify-content: center; text-align: center; }
+            .hero-text { padding-right: 0; }
+            nav ul { display: none; }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>高爾軒老師</h1>
-    <p>長期旅居海外，近年定居台灣與北美，往返台灣從事技術教學</p>
-    <p>臺灣大學畢業後曾任職於新竹晶圓代工廠、美商軟體開發公司</p>
-  </header>
-  <main>
-    <h2>授課內容</h2>
-    <ul>
-      <li>Linux</li>
-    </ul>
 
-    <h2>教學經驗(2000+hrs): </h2>
-    <ul>
-      <li>兼任大專講師</li>
-      <li>兼任職業訓練機構技術顧問與講師</li>
-    </ul>
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">高爾軒 老師</a>
+            <ul>
+                <li><a href="#teaching">授課與經驗</a></li>
+                <li><a href="#contact">聯絡合作</a></li>
+            </ul>
+        </div>
+    </nav>
 
-    <h2>聯絡方式</h2>
-    <p>Email: ntu.cs.kao at gmail dot com</p>
-  </main>
-  <footer>
-    <p>© 2026 高爾軒</p>
-  </footer>
+    <header class="container hero">
+        <div class="hero-text">
+            <h1>高爾軒 老師</h1>
+            <h2>跨越台灣-北美<br>Linux 技術引路人</h2>
+            <p>
+                臺灣大學畢業後，在新竹晶圓代工廠與美商軟體開發公司擔任工程師資歷。
+                長期旅居海外，近年定居於台灣與北美，往返兩地，將國際視野與實戰經驗融入高質感教學。
+            </p>
+        </div>
+        <div class="hero-img">
+            <img src="557887.jpg" alt="高爾軒老師 個人插畫照">
+        </div>
+    </header>
+
+    <section id="teaching" class="section">
+        <div class="container">
+            <h2 class="section-title">授課與教學經驗</h2>
+            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));">
+                
+                <div class="card">
+                    <h3>🐧 授課內容</h3>
+                    <p>現代科技領域的基石：</p>
+                    <ul>
+                        <li><strong>Linux 系統操作與維運</strong></li>
+                        <li>系統核心觀念、環境佈署、實戰技術引導</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>👨‍🏫 教學資歷（累積 2000+ 小時）</h3>
+                    <p>豐富的講台經驗，深受學員與業界機構信賴：</p>
+                    <ul>
+                        <li>擔任<strong>大專院校兼任講師</strong></li>
+                        <li>兼任<strong>職業訓練機構</strong>技術顧問與專業講師</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">聯絡方式</h2>
+            <div class="contact-box">
+                <p style="font-size: 1.1rem; margin-bottom: 25px;">大專院校授課、職訓機構課程合作、企業內訓或技術顧問需求，歡迎來信洽詢：</p>
+                <a href="mailto:ntu.cs.kao@gmail.com" class="email-link">ntu.cs.kao@gmail.com</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 高爾軒. All Rights Reserved. </p>
+        </div>
+    </footer>
+
 </body>
+</html>
